@@ -41,32 +41,41 @@
       "name": "Community",
       "icon": "slack",
       "url": "https://mintlify.com/community"
-    },
-    {
-      "name": "Blog",
-      "icon": "newspaper",
-      "url": "https://mintlify.com/blog"
     }
   ],
   "navigation": [
     {
       "group": "Get Started",
-      "pages": ["introduction", "quickstart", "development"]
-    },
-    {
-      "group": "Essentials",
-      "pages": ["essentials/markdown", "essentials/code", "essentials/images", "essentials/settings", "essentials/navigation"]
+      "pages": [
+        "introduction",
+        "quickstart",
+        "development"
+      ]
     },
     {
       "group": "API Documentation",
-      "pages": ["api-reference/introduction"]
+      "pages": [
+        "api-reference/introduction"
+      ]
     },
     {
-      "group": "Endpoint Examples",
+      "group": "Authorization",
       "pages": [
-        "api-reference/endpoint/get",
-        "api-reference/endpoint/create",
-        "api-reference/endpoint/delete"
+        {
+          "group": "Email Authentication",
+          "pages": [
+            "api-reference/authorization/email/email-sign-in",
+            "api-reference/authorization/email/email-registrations",
+            "api-reference/authorization/email/email-verification"
+          ]
+        },
+        "api-reference/authorization/generate-public-token"
+      ]
+    },
+    {
+      "group": "Products",
+      "pages": [
+        "api-reference/products/top-products"
       ]
     }
   ],
@@ -74,5 +83,9 @@
     "twitter": "https://twitter.com/mintlify",
     "github": "https://github.com/mintlify",
     "linkedin": "https://www.linkedin.com/company/mintsearch"
-  }
+  },
+  "openapi": [
+    "/api-reference/authorization/openapi.json",
+    "/api-reference/authorization/email/openapi.json"
+  ]
 }

@@ -1,0 +1,101 @@
+{
+    "openapi": "3.0.1",
+    "info": {
+        "title": "Token Generation API",
+        "version": "1.0.0",
+        "description": "API for generating public tokens"
+    },
+    "servers": [
+        {
+            "url": "https://api.fusionmarket.cloud"
+        }
+    ],
+    "security": [
+        {
+            "StoreApiKeyAuth": []
+        }
+    ],
+    "paths": {
+        "/api/auth/token": {
+            "post": {
+                "description": "Generates a public token",
+                "security": [
+                    {
+                        "StoreApiKeyAuth": []
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Token generated successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/TokenResponse"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized - Error in token generation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "TokenResponse": {
+                "type": "object",
+                "properties": {
+                    "role": {
+                        "type": "string",
+                        "example": "guest"
+                    },
+                    "session_uid": {
+                        "type": "string",
+                        "example": "session123"
+                    },
+                    "token": {
+                        "$ref": "#/components/schemas/TokenPair"
+                    }
+                }
+            },
+            "TokenPair": {
+                "type": "object",
+                "properties": {
+                    "access_token": {
+                        "type": "string",
+                        "format": "json"
+                    },
+                    "refresh_token": {
+                        "type": "string",
+                        "format": "json"
+                    }
+                }
+            },
+            "Error": {
+                "type": "object",
+                "properties": {
+                    "error": {
+                        "type": "string"
+                    }
+                }
+            }
+        },
+        "securitySchemes": {
+            "StoreApiKeyAuth": {
+                "type": "apiKey",
+                "in": "header",
+                "name": "Authorization",
+                "description": "Use this format: 'Authorization: <StoreApiKey>'"
+            }
+        }
+    }
+}
